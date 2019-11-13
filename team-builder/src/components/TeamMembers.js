@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 
 const TeamMember = props => {
-  const [teamMember, setTeamMember] = useState([]);
-  // console.log(props);
+  console.log(props);
 
-  return <div className="teamMembers">Hello</div>;
+  // const savedTeamMember = props.mostRecentSubmit;
+
+  return (
+    <div className="teamMembers">
+      {props.mostRecentSubmit.map(user => {
+        return <p>{user.firstName}</p>;
+      })}
+    </div>
+  );
 };
 
 export default TeamMember;

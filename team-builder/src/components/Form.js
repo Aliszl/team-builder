@@ -17,12 +17,10 @@ const Form = () => {
       [e.target.name]: e.target.value
     });
   };
+
   const formSubmit = e => {
     e.preventDefault();
-    setSubmit({
-      ...submit,
-      form
-    });
+    setSubmit(submit.concat(form));
   };
 
   return (
@@ -35,11 +33,9 @@ const Form = () => {
           id="teamMember_firstName"
           placeholder="Enter first name"
           onChange={formChange}
-          // We are telling our input what its value should be
-          // It's value corresponds to its property in state
           value={form.firstName}
-        />
-
+        />{" "}
+        <br />
         <label htmlFor="teamMember_lastName">Last name</label>
         <input
           type="text"
@@ -48,27 +44,23 @@ const Form = () => {
           placeholder="Enter last name"
           onChange={formChange}
           value={form.lastName}
-        />
+        />{" "}
+        <br />
         <label htmlFor="teamMember_role">Role</label>
         <input
           type="text"
           name="role"
           id="teamMember_role"
+          placeholder="Enter role"
           onChange={formChange}
           value={form.role}
-        />
-        <label htmlFor="teamMember_email">email </label>
-        <select
-          type="email"
-          name="email"
-          id="teamMember_email"
-          onChange={formChange}
-          value={form.email}
-        />
-
+        />{" "}
+        <br />
         <input onClick={e => formSubmit(e)} type="submit" />
       </form>
-      <TeamMember formData={form} />
+
+      {/* With props and key to send to TeamMembers */}
+      <TeamMember key={form.firstName} mostRecentSubmit={submit} />
     </div>
   );
 };
